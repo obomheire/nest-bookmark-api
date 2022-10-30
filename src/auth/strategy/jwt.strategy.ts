@@ -13,21 +13,21 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     });
   }
 
-  async validate(payload: any) {
-    console.log({
-      payload,
-    });
-
-    return payload;
-  }
-
-  // async validate(payload: { sub: number; email: string }) {
-  //   const user = await this.prisma.user.findUnique({
-  //     where: {
-  //       id: payload.sub,
-  //     },
+  // async validate(payload: any) {
+  //   console.log({
+  //     payload,
   //   });
-  //   delete user.hash;
-  //   return user;
+
+  //   return payload;
   // }
+
+  async validate(payload: { sub: number; email: string }) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: payload.sub,
+      },
+    });
+    delete user.hash;
+    return user;
+  }
 }

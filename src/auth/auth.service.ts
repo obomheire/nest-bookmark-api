@@ -1,4 +1,9 @@
-import { Injectable, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  ForbiddenException,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import * as argon from 'argon2';
@@ -43,6 +48,7 @@ export class AuthService {
       throw error;
     }
   }
+
   async signin(dto: AuthDto) {
     // find the user by email
     const user = await this.prisma.user.findUnique({
