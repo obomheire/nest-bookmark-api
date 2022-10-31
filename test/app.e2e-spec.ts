@@ -40,27 +40,27 @@ describe('App e2e', () => {
       password: 'Secret@123',
     };
     describe('Signup', () => {
-      // it('should throw if email empty', () => {
-      //   return pactum
-      //     .spec()
-      //     .post('/auth/signup')
-      //     .withBody({
-      //       password: dto.password,
-      //     })
-      //     .expectStatus(400);
-      // });
-      // it('should throw if password empty', () => {
-      //   return pactum
-      //     .spec()
-      //     .post('/auth/signup')
-      //     .withBody({
-      //       email: dto.email,
-      //     })
-      //     .expectStatus(400);
-      // });
-      // it('should throw if no body provided', () => {
-      //   return pactum.spec().post('/auth/signup').expectStatus(400);
-      // });
+      it('should throw if email empty', () => {
+        return pactum
+          .spec()
+          .post('/auth/signup')
+          .withBody({
+            password: dto.password,
+          })
+          .expectStatus(400);
+      });
+      it('should throw if password empty', () => {
+        return pactum
+          .spec()
+          .post('/auth/signup')
+          .withBody({
+            email: dto.email,
+          })
+          .expectStatus(400);
+      });
+      it('should throw if no body provided', () => {
+        return pactum.spec().post('/auth/signup').expectStatus(400);
+      });
       it('should signup', () => {
         return pactum
           .spec()
