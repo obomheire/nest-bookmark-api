@@ -7,9 +7,9 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: nest
+      POSTGRES_DB: bookmarks-db
     networks:
-      - freecodecamp
+      - zackoverflow
   test-db:
     image: postgres:13
     ports:
@@ -17,8 +17,8 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: nest
+      POSTGRES_DB: bookmarks-db
     networks:
-      - freecodecamp
+      - zackoverflow
 networks:
-  freecodecamp:
+  zackoverflow:
