@@ -2,7 +2,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as pactum from 'pactum';
 import { AppModule } from '../src/app.module';
-import { SigninDto } from '../src/auth/dto';
+import { SigninDto, SignupDto } from '../src/auth/dto';
 import { CreateBookmarkDto, EditBookmarkDto } from '../src/bookmark/dto';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { EditUserDto } from '../src/user/dto';
@@ -35,17 +35,27 @@ describe('App e2e', () => {
   });
 
   describe('Auth', () => {
-    const dto: SigninDto = {
+    const sudto: SignupDto = {
+      email: 'zack@gmail.com',
+      password: 'Secret@123',
+      firstName: 'Zack',
+      lastName: 'Bello',
+    };
+
+    const sidto: SigninDto = {
       email: 'zack@gmail.com',
       password: 'Secret@123',
     };
+
     describe('Signup', () => {
       it('should throw if email empty', () => {
         return pactum
           .spec()
           .post('/auth/signup')
           .withBody({
-            password: dto.password,
+            password: sudto.password,
+            firstName: sudto.firstName,
+            lastName: sudto.lastName,
           })
           .expectStatus(400);
       });
@@ -54,7 +64,31 @@ describe('App e2e', () => {
           .spec()
           .post('/auth/signup')
           .withBody({
-            email: dto.email,
+            email: sudto.email,
+            firstName: sudto.firstName,
+            lastName: sudto.lastName,
+          })
+          .expectStatus(400);
+      });
+      it('should throw if first name empty', () => {
+        return pactum
+          .spec()
+          .post('/auth/signup')
+          .withBody({
+            email: sudto.email,
+            password: sudto.password,
+            lastName: sudto.lastName,
+          })
+          .expectStatus(400);
+      });
+      it('should throw if last name empty', () => {
+        return pactum
+          .spec()
+          .post('/auth/signup')
+          .withBody({
+            email: sudto.email,
+            password: sudto.password,
+            firstName: sudto.firstName,
           })
           .expectStatus(400);
       });
@@ -65,7 +99,7 @@ describe('App e2e', () => {
         return pactum
           .spec()
           .post('/auth/signup')
-          .withBody(dto)
+          .withBody(sudto)
           .expectStatus(201);
         // .inspect();
       });
@@ -77,7 +111,7 @@ describe('App e2e', () => {
           .spec()
           .post('/auth/signin')
           .withBody({
-            password: dto.password,
+            password: sidto.password,
           })
           .expectStatus(400);
       });
@@ -86,7 +120,7 @@ describe('App e2e', () => {
           .spec()
           .post('/auth/signin')
           .withBody({
-            email: dto.email,
+            email: sidto.email,
           })
           .expectStatus(400);
       });
@@ -97,7 +131,7 @@ describe('App e2e', () => {
         return pactum
           .spec()
           .post('/auth/signin')
-          .withBody(dto)
+          .withBody(sidto)
           .expectStatus(200)
           .stores('userAt', 'access_token');
       });
