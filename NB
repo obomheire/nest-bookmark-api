@@ -1,0 +1,26 @@
+sudo docker stop container_id
+sudo docker compose down (Stop and remove container)
+npx prisma migrate dev/npx dotenv -e .env -- prisma migrate dev (Create new database migration)
+npx prisma generate/npx dotenv -e .env -- prisma generate (Optional, auto done by migrate dev)
+
+NEST GENERATE MODULE/SERVICE:
+nest g module module_name
+nest g service service_name --no-spec
+
+FOR DEVELOPMENT USING .env (default):
+sudo docker compose up dev-db -d
+npx prisma migrate deploy (Apply changes to existing migration or when container is removed)
+yarn dev
+npx prisma studio
+OR
+sudo docker compose up dev-db -d
+npx dotenv -e .env -- prisma migrate deploy (Apply changes to existing migration or when container is removed)
+yarn dev
+npx dotenv -e .env -- prisma studio
+
+FOR TEST USING .env.test:
+sudo docker compose down
+sudo docker compose up test-db -d
+npx dotenv -e .env.test -- prisma migrate deploy
+yarn test:e2e
+npx dotenv -e .env.test -- prisma studio
