@@ -1,0 +1,61 @@
+### Register User
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+    "email": "zack@gmail.com",
+    "password": "Secret@123"
+}
+
+### Login User
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+    "email": "justina@gmail.com",
+    "password": "Secret@123",
+    "firstName": "Justina",
+    "lastName": "Agbadu"
+}
+
+### Update User
+PATCH http://localhost:3000/users
+content-type: application/json
+
+{
+    "email": "justina1@gmail.com",
+    "firstName": "Justina1",
+    "lastName": "Agbadu1"
+}
+
+### Delete User By ID
+DELETE http://localhost:3000/users/1
+
+### Create Bookmark
+POST http://localhost:3000/bookmarks
+content-type: application/json
+
+{
+    "title": "",
+    "description": "",
+    "link": ""
+}
+
+### Get  All Bookmark
+GET http://localhost:3000/bookmarks
+
+### Get Bookmark By ID
+GET http://localhost:3000/bookmarks/1
+
+### Update Bookmark By ID
+PATCH http://localhost:3000/bookmarks/1
+content-type: application/json
+
+{
+    "title": "",
+    "description": "",
+    "link": ""
+}
+
+### Delete Bookmark By ID
+DELETE http://localhost:3000/bookmarks/1
