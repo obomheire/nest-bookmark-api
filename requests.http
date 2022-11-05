@@ -1,4 +1,15 @@
-### Register User
+### Resgister User
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+    "email": "zack@gmail.com",
+    "password": "Secret@123",
+    "firstName": "Zack",
+    "lastName": "Bello"
+}
+
+### User Login
 POST http://localhost:3000/auth/signin
 content-type: application/json
 
@@ -7,20 +18,11 @@ content-type: application/json
     "password": "Secret@123"
 }
 
-### Login User
-POST http://localhost:3000/auth/signup
-content-type: application/json
-
-{
-    "email": "justina@gmail.com",
-    "password": "Secret@123",
-    "firstName": "Justina",
-    "lastName": "Agbadu"
-}
 
 ### Update User
 PATCH http://localhost:3000/users
 content-type: application/json
+Authorization: Bearer 
 
 {
     "email": "justina1@gmail.com",
@@ -30,6 +32,7 @@ content-type: application/json
 
 ### Delete User By ID
 DELETE http://localhost:3000/users/1
+Authorization: Bearer 
 
 ### Create Bookmark
 POST http://localhost:3000/bookmarks
