@@ -3,9 +3,9 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-    "email": "vsdemo@gmail.com",
+    "email": "demo@gmail.com",
     "password": "Secret@123",
-    "firstName": "VS",
+    "firstName": "Demo",
     "lastName": "Demo"
 }
 
@@ -14,7 +14,7 @@ POST http://localhost:3000/auth/signin
 content-type: application/json
 
 {
-    "email": "vsdemo@gmail.com",
+    "email": "demo@gmail.com",
     "password": "Secret@123"
 }
 
@@ -22,35 +22,21 @@ content-type: application/json
 GET http://localhost:3000/users/me
 Authorization: Bearer 
 
-
 ### Update User
 PATCH http://localhost:3000/users
 content-type: application/json
 Authorization: Bearer 
 
 {
-    "email": "updatevsdemo@gmail.com",
+    "email": "updatedemo@gmail.com",
     "firstName": "Update",
-    "lastName": "VSDemo"
-}
-
-### Delete User By ID
-DELETE http://localhost:3000/users/1
-Authorization: Bearer 
-
-### Create Bookmark
-POST http://localhost:3000/bookmarks
-content-type: application/json
-
-{
-    "title": "",
-    "description": "",
-    "link": ""
+    "lastName": "Demo"
 }
 
 ### Get  All Bookmark
 GET http://localhost:3000/bookmarks
 Authorization: Bearer 
+
 ### Get Bookmark By ID
 GET http://localhost:3000/bookmarks/2
 Authorization: Bearer 
@@ -66,7 +52,7 @@ Authorization: Bearer
     "link": "https://www.youtube.com/watch?v=EsmbMLwDmik"
 }
 
-### Update Bookmark By ID
+### Update Bookmark
 PATCH http://localhost:3000/bookmarks/2
 content-type: application/json
 Authorization: Bearer 
@@ -77,5 +63,6 @@ Authorization: Bearer
     "link": "https://www.youtube.com/watch?v=EsmbMLwDmik"
 }
 
-### Delete Bookmark By ID
-DELETE http://localhost:3000/bookmarks/1
+### Delete Bookmark
+DELETE http://localhost:3000/bookmarks/2
+Authorization: Bearer 
